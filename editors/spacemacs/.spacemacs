@@ -35,15 +35,26 @@ values."
      spell-checking
      syntax-checking
      version-control
-     chrome
      eldoc
      helm-gtags
      php
+     sql
      python
+     chrome
      docker
      dockerfile
-     colors
+     github
+     deer
+     ranger
+     html
+     emoji
      erc
+     colors
+     (colors :variables
+             colors-enable-rainbow-identifiers nil
+             colors-enable-nyan-cat-progress-bar (display-graphic-p))
+     shell
+     sqlplus
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -252,17 +263,24 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 
 (defun dotspacemacs/user-config ()
-  "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
+  	"Configuration function for user code.
+	This function is called at the very end of Spacemacs initialization after
+	layers configuration.
+	This is the place where most of your configurations should be done. Unless it is
+	explicitly specified that a variable should be set before a package is loaded,
+	you should place your code here."
 	(global-linum-mode)
   
 	;; Make linums relative by default
-  (with-eval-after-load 'linum
-    (linum-relative-toggle))
+  	(with-eval-after-load 'linum
+    	(linum-relative-toggle))
+
+	;; php flychecck mode psr2
+  	(setq
+   		php-mode-coding-style (quote psr2)
+  		php-template-compatibility nil
+   		flycheck-phpcs-standard "PSR2")
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
