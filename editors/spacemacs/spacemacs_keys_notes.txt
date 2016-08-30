@@ -1,0 +1,30 @@
+Spaemacs Tips -*- mode: org -*-
+
+C = Control Key
+[spc] = press command key, default is space bar
+
+* Modes
+  Quick overview of spacemacs modes and there colours
+  1. Green = org mode
+  2. Red = iedit
+  3. Yellow = Normal mode or default mode
+
+* Coding shortcuts
+** Goto line [spc] y [number]
+** comment line [spc] ;
+
+* Debugging spacemacs
+  So many options layers and plugins thing can go wrong
+  ** attempt to break out of a lock and start the debugger
+     *** kill -SIGUSR2 [pid]
+  ** Using C-g using toggle-debug-on-quit, this needs enabling first
+     *** C-g 
+
+* Searching
+  ** search for term in project under the cursor
+     *** */
+  ** search accross project
+     *** [spc] /
+
+* Selecting
+** v a [char] select between char ie quotes brackets
