@@ -1,4 +1,4 @@
-Spaemacs Tips -*- mode: org -*-
+Spacemacs Tips -*- mode: org -*-
 
 C = Control Key
 [spc] = press command key, default is space bar
@@ -12,19 +12,24 @@ C = Control Key
 * Coding shortcuts
 ** Goto line [spc] y [number]
 ** comment line [spc] ;
-
-* Debugging spacemacs
+** find f [char] will jump to that char
+* Debug
+ging spacemacs
   So many options layers and plugins thing can go wrong
-  ** attempt to break out of a lock and start the debugger
-     *** kill -SIGUSR2 [pid]
-  ** Using C-g using toggle-debug-on-quit, this needs enabling first
-     *** C-g 
+** attempt to break out of a lock and start the debugger
+*** kill -SIGUSR2 [pid]
+** Using C-g using toggle-debug-on-quit, this needs enabling first
+*** C-g 
 
 * Searching
-  ** search for term in project under the cursor
-     *** */
-  ** search accross project
-     *** [spc] /
+** search for term in project under the cursor
+*** */
+** search accross project
+*** [spc] /
 
-* Selecting
+* Selecting text
 ** v a [char] select between char ie quotes brackets
+* Shell Modes
+** [spc] a s i this will give you your default shell bash fish zsh for example
+* SQL Modes
+** [spc] m b S to save your connected database 
