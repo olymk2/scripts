@@ -9,14 +9,38 @@ C = Control Key
   1. Green = org mode
   2. Red = iedit
   3. Yellow = Normal mode or default mode
-
+* Text Editing
+** Moving text around
+*** :m +4 move current line up 4 line
+*** :m -4 move current line down 4 line
+*** :m4 move current line to line 4
+** Move cursor around
+*** move to bottom of the page [Alt] >
+*** move to top of the page [Alt] <
+** Copy text
+*** yiw copy a word under the cursor
+*** yiW copy a word including characters like underscores
+** Replace paste
+*** viwp paste over word
+*** viWp paste over more complex word
+*** vep paste over from cursor position
+** Encapsulation
+*** ysf[char][char] yank surround match char surround with char
+*** cs[char][char] change surround, replace first char with second
+* Select modes
+** vi [char] visual select block between character
+** vis select jump to edge, does stops at new line
+** vai select based on indent
+* insert mode
+** insert blank line, and enter insert mode
+*** insert above O
+*** insert below o
+*** insert mode i 
 * Coding shortcuts
 ** Goto line [spc] y [number]
 ** comment line [spc] ;
 ** block comment g c 
 ** find f [char] will jump to that char
-** move to top of the page [Alt] <
-** move to bottom of the page [Alt] >
 * Debug
 ging spacemacs
   So many options layers and plugins thing can go wrong
@@ -42,3 +66,4 @@ ging spacemacs
 ** preview with [spc] m c p
 *** if it errors `apt install markdown` package 
 
+* org modes

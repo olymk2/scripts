@@ -35,22 +35,18 @@ values."
      spell-checking
      syntax-checking
      version-control
-     eldoc
-     helm-gtags
      php
      sql
      python
      chrome
-     docker
      dockerfile
      restclient
      github
-     deer
      ranger
      html
      emoji
      erc
-     colors
+     ;;colors
      (colors :variables
              colors-enable-rainbow-identifiers nil
              colors-enable-nyan-cat-progress-bar (display-graphic-p))
@@ -60,7 +56,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(eldoc helm-gtags docker)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -270,7 +266,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
 	explicitly specified that a variable should be set before a package is loaded,
 	you should place your code here."
 	(global-linum-mode)
-  
+
+
+  ;; set yasnippet folder
+  (require 'yasnippet)
+  (yas/initialize)
+  (yas/load-directory "~/.emacs.d/snippets")
+
 	;; Make linums relative by default
   	(with-eval-after-load 'linum
     	(linum-relative-toggle))
