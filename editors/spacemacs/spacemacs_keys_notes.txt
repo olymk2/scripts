@@ -21,6 +21,7 @@ C = Control Key
 *** yiw copy a word under the cursor
 *** yiW copy a word including characters like underscores
 ** Replace paste
+*** ci [char] insert over everything in surrounding char
 *** viwp paste over word
 *** viWp paste over more complex word
 *** vep paste over from cursor position
