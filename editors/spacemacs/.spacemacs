@@ -46,6 +46,7 @@ values."
      html
      emoji
      erc
+     yaml
      ;;colors
      (colors :variables
              colors-enable-rainbow-identifiers nil
