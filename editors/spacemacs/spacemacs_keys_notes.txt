@@ -9,6 +9,10 @@ C = Control Key
   1. Green = org mode
   2. Red = iedit
   3. Yellow = Normal mode or default mode
+* Help 
+** [ctrl] h m this shows a list of the current active modes in your buffer
+** find value of a variable
+*** [ctrl] h v 
 * Text Editing
 ** Moving text around
 *** :m +4 move current line up 4 line
@@ -28,6 +32,15 @@ C = Control Key
 ** Encapsulation
 *** ysf[char][char] yank surround match char surround with char
 *** cs[char][char] change surround, replace first char with second
+* Mark Text
+** m [char] ' [char] to jump to that mark 
+* Find and replace
+** replace (null with (number the number will increment
+*** :%s/(null/(\#/g
+** [ctrl] % query replace will maintain case on the replace
+** x will delete the current character in command mode
+* Moving around
+** [ctrl] [alt] a or e will move you up or down a function
 * Select modes
 ** vi [char] visual select block between character
 ** vis select jump to edge, does stops at new line
@@ -59,6 +72,8 @@ ging spacemacs
 
 * Selecting text
 ** v a [char] select between char ie quotes brackets
+** g_ select to last character on a line
+*** vg_ follwed by s( is handy for surrounding text in brackets
 * Shell Modes
 ** [spc] a s i this will give you your default shell bash fish zsh for example
 * SQL Modes
@@ -68,3 +83,4 @@ ging spacemacs
 *** if it errors `apt install markdown` package 
 
 * org modes
+

@@ -273,16 +273,20 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (yas/initialize)
   (yas/load-directory "~/.emacs.d/snippets")
 
-	;; Make linums relative by default
+	  ;; Make linums relative by default
   	(with-eval-after-load 'linum
     	(linum-relative-toggle))
 
-	;; php flychecck mode psr2
+	  ;; php flychecck mode psr2
   	(setq
    		php-mode-coding-style (quote psr2)
   		php-template-compatibility nil
    		flycheck-phpcs-standard "PSR2")
 
+    ;; php correct code psr2
+    (custom-set-variables
+     '(phpcbf-executable "/usr/bin/phpcbf")
+     '(phpcbf-standard "PSR2"))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
