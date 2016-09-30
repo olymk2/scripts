@@ -296,6 +296,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(helm-ag-fuzzy-match t)
+ '(phpcbf-executable "/usr/bin/phpcbf")
+ '(phpcbf-standard "PSR2")
  '(sql-connection-alist
    (quote
     (("stomatopod"
