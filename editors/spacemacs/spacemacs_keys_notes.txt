@@ -47,6 +47,7 @@ C = Control Key
 ** x will delete the current character in command mode
 * Moving around
 ** [ctrl] [alt] a or e will move you up or down a function
+** [spc] j l [number] jump to a line
 * Select modes
 ** vi [char] visual select block between character
 ** vis select jump to edge, does stops at new line
@@ -57,7 +58,8 @@ C = Control Key
 *** insert below o
 *** insert mode i 
 * Coding shortcuts
-** Goto line [spc] y [number]
+** [spc] m g g goto function definition
+** Goto line [spc] j l [number]
 ** comment line [spc] ;
 ** block comment g c 
 ** find f [char] will jump to that char
