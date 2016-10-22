@@ -59,7 +59,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(eldoc helm-gtags docker)
+   dotspacemacs-additional-packages '(eldoc helm-gtags docker camcorder)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -153,7 +153,7 @@ values."
    ;; Emacs commands (M-x).
    ;; By default the command key is `:' so ex-commands are executed like in Vim
    ;; with `:' and Emacs commands are executed with `<leader> :'.
-   dotspacemacs-command-key ":"
+   dotspacemacs-emacs-command-key "SPC"
    ;; If non nil `Y' is remapped to `y$'. (default t)
    dotspacemacs-remap-Y-to-y$ t
    ;; Name of the default layout (default "Default")
@@ -268,8 +268,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
 	This is the place where most of your configurations should be done. Unless it is
 	explicitly specified that a variable should be set before a package is loaded,
 	you should place your code here."
-	(global-linum-mode)
+    (global-linum-mode)
 
+  ;; treat _ as part of a word
+  ;; http://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+  (with-eval-after-load 'evil
+    (defalias #'forward-evil-word #'forward-evil-symbol))
 
   ;; set yasnippet folder
   (require 'yasnippet)

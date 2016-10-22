@@ -10,6 +10,9 @@ C = Control Key
   2. Red = iedit
   3. Yellow = Normal mode or default mode
 * Help 
+** [spc] [spc] list all commands 
+** [spc] h [spc] list docs and layer help
+** [spc] ? list all key bindings and commands they run
 ** [ctrl] h m this shows a list of the current active modes in your buffer
 ** find value of a variable
 *** [ctrl] h v 
@@ -25,6 +28,7 @@ C = Control Key
 ** Copy text
 *** yiw copy a word under the cursor
 *** yiW copy a word including characters like underscores
+*** :y% copy all (select all) 
 ** Replace paste
 *** ci [char] insert over everything in surrounding char
 *** viwp paste over word
@@ -33,7 +37,7 @@ C = Control Key
 ** Encapsulation
 *** ysf[char][char] yank surround match char surround with char
 *** cs[char][char] change surround, replace first char with second
-** Deleteing text
+** Deleting text
 *** daw will delete a whole word
 ** edit multiple words at one / block cursor
 *** [spc] s e on a highlighted word lets you edit all at once
@@ -48,15 +52,19 @@ C = Control Key
 * Moving around
 ** [ctrl] [alt] a or e will move you up or down a function
 ** [spc] j l [number] jump to a line
+** + - jump to first character on next line or previous line
+   you can use _ for the current line
 * Select modes
 ** vi [char] visual select block between character
 ** vis select jump to edge, does stops at new line
 ** vai select based on indent
 * insert mode
+** entering insert modes
+*** insert mode i 
+*** insert mode end of live a 
 ** insert blank line, and enter insert mode
 *** insert above O
 *** insert below o
-*** insert mode i 
 * Coding shortcuts
 ** [spc] m g g goto function definition
 ** Goto line [spc] j l [number]
