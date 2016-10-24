@@ -41,7 +41,6 @@ values."
      sql
      python
      chrome
-     dockerfile
      restclient
      github
      ranger
