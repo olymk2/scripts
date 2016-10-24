@@ -41,7 +41,6 @@ values."
      sql
      python
      chrome
-     dockerfile
      restclient
      github
      ranger
@@ -49,6 +48,7 @@ values."
      emoji
      erc
      yaml
+     django
      ;;colors
      (colors :variables
              colors-enable-rainbow-identifiers nil
