@@ -49,6 +49,7 @@ values."
      emoji
      erc
      yaml
+     django
      ;;colors
      (colors :variables
              colors-enable-rainbow-identifiers nil
