@@ -60,7 +60,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(org-jira writegood-mode skewer-mode ob-restclient eldoc helm-gtags docker camcorder ob-php)
+   dotspacemacs-additional-packages '(drone org-jira writegood-mode skewer-mode ob-restclient eldoc helm-gtags docker camcorder ob-php)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -297,12 +297,21 @@ before packages are loaded. If you are unsure, you should try in setting them in
      '(phpcbf-standard "PSR2"))
 
 
-    ;; enable babel rectclient
+    ;; enable babel rectclient, run php code
+    (add-to-list 'org-babel-load-languages '(php . t))
     (org-babel-do-load-languages 'org-babel-load-languages '((restclient . t)))
 
     ;;user packages
-    (load-file "~/.emacs/drone.el")
-    (load-file "~/.emacs/docker-compose.el")
+    (if (file-exists-p "~/.emacs/jira.el")
+      (load-file "~/.emacs/jira.el"))
+
+    (if (file-exists-p "~/.emacs/drone.el")
+      (load-file "~/.emacs/drone.el"))
+
+
+    (if (file-exists-p "~/.emacs/docker-compose.el")
+      (load-file "~/.emacs/docker-compose.el"))
+
     (global-set-key (kbd "C-c d") 'dc-launcher/body)
     (evil-leader/set-key "d" 'dc-launcher/body)
   )
@@ -335,6 +344,3 @@ before packages are loaded. If you are unsure, you should try in setting them in
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
 
 (setq custom-file "~/.spacemacs.custom")
-(setq jiralib-url "https://jira.influentialsoftware.com/")
-;;(add-to-list 'org-babel-load-languages '(php . t))
-;;(org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
