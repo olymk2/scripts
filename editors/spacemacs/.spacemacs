@@ -24,6 +24,7 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     search-engine
      auto-completion
      better-defaults
      emacs-lisp
@@ -41,7 +42,6 @@ values."
      sql
      python
      chrome
-     dockerfile
      restclient
      github
      ranger
@@ -59,7 +59,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(eldoc helm-gtags docker camcorder)
+   dotspacemacs-additional-packages '(org-jira writegood-mode skewer-mode ob-restclient eldoc helm-gtags docker camcorder ob-php)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -294,6 +294,16 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (custom-set-variables
      '(phpcbf-executable "/usr/bin/phpcbf")
      '(phpcbf-standard "PSR2"))
+
+
+    ;; enable babel rectclient
+    (org-babel-do-load-languages 'org-babel-load-languages '((restclient . t)))
+
+    ;;user packages
+    (load-file "~/.emacs/drone.el")
+    (load-file "~/.emacs/docker-compose.el")
+    (global-set-key (kbd "C-c d") 'dc-launcher/body)
+    (evil-leader/set-key "d" 'dc-launcher/body)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -304,6 +314,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(helm-ag-fuzzy-match t)
+ '(org-enable-bootstrap-support t)
  '(phpcbf-executable "/usr/bin/phpcbf")
  '(phpcbf-standard "PSR2")
  '(sql-connection-alist
@@ -321,3 +332,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
  ;; If there is more than one, they won't work right.
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+
+(setq custom-file "~/.spacemacs.custom")
+(setq jiralib-url "https://jira.influentialsoftware.com/")
+;;(add-to-list 'org-babel-load-languages '(php . t))
+;;(org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
