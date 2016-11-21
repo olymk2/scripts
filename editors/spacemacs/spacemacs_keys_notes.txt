@@ -3,6 +3,8 @@ Spacemacs Tips -*- mode: org -*-
 M = (modifier key) Alt key 
 C = Control Key
 [spc] = press command key, default is space bar
+[char] = any character you want to match
+
 
 * Modes
   Quick overview of spacemacs modes and there colours
@@ -16,8 +18,12 @@ C = Control Key
 ** [ctrl] h m this shows a list of the current active modes in your buffer
 ** find value of a variable
 *** [ctrl] h v 
-* Text Editing
-** ~ uppercase a character
+* Text Editing characters
+** Special character
+*** =[spc] i u= helm unicode search, inserts unicode character
+*** =[spc] i e= helm emoji search, insert emoji text 
+** =~= uppercase a character
+* Text Editing lines
 ** Moving text around
 *** :m +4 move current line up 4 line
 *** :m -4 move current line down 4 line
@@ -39,8 +45,16 @@ C = Control Key
 *** cs[char][char] change surround, replace first char with second
 ** Deleting text
 *** daw will delete a whole word
-** edit multiple words at one / block cursor
+*** =dd= delete line
+*** =d⇧= delete current line and one above  
+*** =d⇩= delete current line and one above
+*** =d0= delete to beginning of line
+*** =d_= delete to first character in line
+*** =ds[char]= delete matching bracket or quotes
+** edit multiple words at once / block cursor
 *** [spc] s e on a highlighted word lets you edit all at once
+* Text Editing blocks
+* Text editing multiple positions 
 * Mark Text
 ** m [char] ' [char] to jump to that mark 
 
@@ -100,4 +114,3 @@ ging spacemacs
 *** if it errors `apt install markdown` package 
 
 * org modes
-

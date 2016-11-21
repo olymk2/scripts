@@ -74,7 +74,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(drone org-jira writegood-mode skewer-mode ob-restclient eldoc helm-gtags docker camcorder ob-php)
+   dotspacemacs-additional-packages '(drone org-jira writegood-mode skewer-mode ob-go ob-restclient eldoc helm-gtags docker camcorder ob-php)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -323,13 +323,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 
 (defun dotspacemacs/user-config ()
-  	"Configuration function for user code.
+  "Configuration function for user code.
 	This function is called at the very end of Spacemacs initialization after
 	layers configuration.
 	This is the place where most of your configurations should be done. Unless it is
 	explicitly specified that a variable should be set before a package is loaded,
 	you should place your code here."
-    (global-linum-mode)
+  (global-linum-mode)
 
   ;; treat _ as part of a word
   ;; http://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
@@ -341,46 +341,55 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (yas/initialize)
   (yas/load-directory "~/.emacs.d/snippets")
 
+  ;;org babel languages
+  (setq org-babel-python-command "python3") 
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)
+     (go . t)
+     (php . t)
+     (shell . t)
+     ))
 
   ;; Make linums relative by default
-  	(with-eval-after-load 'linum
-    	(linum-relative-toggle))
+  (with-eval-after-load 'linum
+    (linum-relative-toggle))
 
-	  ;; php flychecck mode psr2
-  	(setq
-   		php-mode-coding-style (quote psr2)
-  		php-template-compatibility nil
-   		flycheck-phpcs-standard "PSR2")
+  ;; php flychecck mode psr2
+  (setq
+   php-mode-coding-style (quote psr2)
+   php-template-compatibility nil
+   flycheck-phpcs-standard "PSR2")
 
-    ;; php correct code psr2
-    (custom-set-variables
-     '(phpcbf-executable "/usr/bin/phpcbf")
-     '(phpcbf-standard "PSR2"))
-
-
-    ;;make shell-command use bash 
-    (setq shell-file-name "/bin/bash")
-    ;;(setenv "SHELL" "/bin/bash")
-    ;;(setq explicit-shell-file-name "/bin/bash")
+  ;; php correct code psr2
+  (custom-set-variables
+   '(phpcbf-executable "/usr/bin/phpcbf")
+   '(phpcbf-standard "PSR2"))
 
 
-    ;; enable babel rectclient, run php code
-    (add-to-list 'org-babel-load-languages '(php . t))
-    (org-babel-do-load-languages 'org-babel-load-languages '((restclient . t)))
+  ;;make shell-command use bash 
+  (setq shell-file-name "/bin/bash")
+  ;;(setenv "SHELL" "/bin/bash")
+  ;;(setq explicit-shell-file-name "/bin/bash")
 
-    ;;user packages
-    (if (file-exists-p "~/.emacs/jira.el")
+
+  ;; enable babel rectclient, run php code
+  (add-to-list 'org-babel-load-languages '(php . t))
+  (org-babel-do-load-languages 'org-babel-load-languages '((restclient . t)))
+
+  ;;user packages
+  (if (file-exists-p "~/.emacs/jira.el")
       (load-file "~/.emacs/jira.el"))
 
-    (if (file-exists-p "~/.emacs/drone.el")
+  (if (file-exists-p "~/.emacs/drone.el")
       (load-file "~/.emacs/drone.el"))
 
 
-    (if (file-exists-p "~/.emacs/docker-compose.el")
+  (if (file-exists-p "~/.emacs/docker-compose.el")
       (load-file "~/.emacs/docker-compose.el"))
 
-    (global-set-key (kbd "C-c d") 'dc-launcher/body)
-    (evil-leader/set-key "d" 'dc-launcher/body)
+  (global-set-key (kbd "C-c d") 'dc-launcher/body)
+  (evil-leader/set-key "d" 'dc-launcher/body)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
