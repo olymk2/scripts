@@ -31,6 +31,8 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     csv
+     nginx
      javascript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -340,14 +342,29 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (require 'yasnippet)
   (yas/initialize)
   (yas/load-directory "~/.emacs.d/snippets")
+  (require 'ox)
 
+  ;; web mode indent by 2 spaces
+  (defun my-web-mode-hook ()
+    "Hooks for Web mode."
+    (setq web-mode-markup-indent-offset 2)
+    )
+  (add-hook 'web-mode-hook  'my-web-mode-hook)
+
+  ;;org mode latex size / formulas
+  (plist-put org-format-latex-options :scale 2.0)
+  ;;(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
+  (set-default 'preview-scale-function 1.4)
+  
   ;;org babel languages
+  (setq org-odt-preferred-output-format "docx")
   (setq org-babel-python-command "python3") 
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((python . t)
      (go . t)
      (php . t)
+     (emacs-lisp . t)
      (restclient . t)
      (shell . t)
      ))
@@ -377,6 +394,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; enable babel rectclient, run php code
   (add-to-list 'org-babel-load-languages '(php . t))
   (org-babel-do-load-languages 'org-babel-load-languages '((restclient . t)))
+  (setq org-latex-create-formula-image-program 'imagemagick)
 
   ;;user packages
   (if (file-exists-p "~/.emacs/jira.el")
@@ -384,6 +402,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (if (file-exists-p "~/.emacs/drone.el")
       (load-file "~/.emacs/drone.el"))
+
+  (if (file-exists-p "~/.emacs/ox-blog-nikola.el")
+      (load-file "~/.emacs/ox-blog-nikola.el"))
 
   (if (file-exists-p "~/.emacs/database.el")
       (load-file "~/.emacs/database.el"))
