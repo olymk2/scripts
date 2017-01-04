@@ -53,6 +53,7 @@ values."
      spell-checking
      syntax-checking
      version-control
+     gtags
      go
      php
      sql
@@ -369,6 +370,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
      (shell . t)
      ))
 
+  (require 'ox)
+
   ;; Make linums relative by default
   (with-eval-after-load 'linum
     (linum-relative-toggle))
@@ -414,6 +417,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (global-set-key (kbd "C-c d") 'dc-launcher/body)
   (evil-leader/set-key "d" 'dc-launcher/body)
+  (evil-leader/set-key "D" 'drone-exec-popup)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
