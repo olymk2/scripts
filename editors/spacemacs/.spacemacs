@@ -405,6 +405,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (if (file-exists-p "~/.emacs/drone.el")
       (load-file "~/.emacs/drone.el"))
+  
+  (if (file-exists-p "~/.emacs/drone.el")
+      (load-file "~/.emacs/user.el"))
 
   (if (file-exists-p "~/.emacs/ox-blog-nikola.el")
       (load-file "~/.emacs/ox-blog-nikola.el"))

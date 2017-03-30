@@ -12,4 +12,6 @@ alias emax="emacsclient -t"                      # used to be "emacs -nw"
 alias smax="sudo emacsclient -t"                # used to be "sudo emacs -nw"
 alias gmax="emacsclient -c -a emacs"             # new - opens the GUI with alternate non-daemon
 
+set -x DRONE_SERVER https//ci.example.com
+set -x DRONE_TOKEN secret-token
 
