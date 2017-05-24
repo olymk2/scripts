@@ -283,7 +283,11 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
+<<<<<<< HEAD
    dotspacemacs-line-numbers `relative
+=======
+   dotspacemacs-line-numbers 'relative
+>>>>>>> 2ffa2470ddac2be8ab1c881242b49084f8f9456e
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -412,6 +416,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (if (file-exists-p "~/.emacs/drone.el")
       (load-file "~/.emacs/drone.el"))
+  
+  (if (file-exists-p "~/.emacs/drone.el")
+      (load-file "~/.emacs/user.el"))
 
   (if (file-exists-p "~/.emacs/ox-blog-nikola.el")
       (load-file "~/.emacs/ox-blog-nikola.el"))
