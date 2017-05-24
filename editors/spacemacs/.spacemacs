@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     windows-scripts
      csv
      nginx
      javascript
@@ -282,7 +283,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers `relative
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -299,7 +300,7 @@ values."
    dotspacemacs-highlight-delimiters 'all
    ;; If non nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
-   dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server t
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    ;; (default '("ag" "pt" "ack" "grep"))
@@ -343,7 +344,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (require 'yasnippet)
   (yas/initialize)
   (yas/load-directory "~/.emacs.d/snippets")
-  (require 'ox)
+
 
   ;; web mode indent by 2 spaces
   (defun my-web-mode-hook ()
@@ -352,25 +353,32 @@ before packages are loaded. If you are unsure, you should try in setting them in
     )
   (add-hook 'web-mode-hook  'my-web-mode-hook)
 
-  ;;org mode latex size / formulas
-  (plist-put org-format-latex-options :scale 2.0)
-  ;;(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
-  (set-default 'preview-scale-function 1.4)
-  
-  ;;org babel languages
-  (setq org-odt-preferred-output-format "docx")
-  (setq org-babel-python-command "python3") 
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((python . t)
-     (go . t)
-     (php . t)
-     (emacs-lisp . t)
-     (restclient . t)
-     (shell . t)
-     ))
+  (with-eval-after-load 'org
+    ;;org mode latex size / formulas
+    (plist-put org-format-latex-options :scale 2.0)
+    ;;(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
+    (set-default 'preview-scale-function 1.4)
 
-  (require 'ox)
+    ;;org babel languages
+    (setq org-odt-preferred-output-format "docx")
+    (setq org-babel-python-command "python3") 
+    (org-babel-do-load-languages
+    'org-babel-load-languages
+    '((python . t)
+      (go . t)
+      (php . t)
+      (emacs-lisp . t)
+      (restclient . t)
+      (shell . t)
+      ))
+
+      ;; enable babel rectclient, run php code
+      (add-to-list 'org-babel-load-languages '(php . t))
+      (org-babel-do-load-languages 'org-babel-load-languages '((restclient . t)))
+      (setq org-latex-create-formula-image-program 'imagemagick)
+
+    )
+
 
   ;; Make linums relative by default
   (with-eval-after-load 'linum
@@ -393,11 +401,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;;(setenv "SHELL" "/bin/bash")
   ;;(setq explicit-shell-file-name "/bin/bash")
 
-
-  ;; enable babel rectclient, run php code
-  (add-to-list 'org-babel-load-languages '(php . t))
-  (org-babel-do-load-languages 'org-babel-load-languages '((restclient . t)))
-  (setq org-latex-create-formula-image-program 'imagemagick)
+  ;; format string used when creating CLOCKSUM lines and when generating a
+  ;; time duration (avoid showing days)
+  (setq org-time-clocksum-format
+        '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
 
   ;;user packages
   (if (file-exists-p "~/.emacs/jira.el")
