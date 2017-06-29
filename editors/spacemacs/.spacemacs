@@ -31,6 +31,8 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     helm
+     emacs-lisp
      windows-scripts
      csv
      nginx
@@ -40,11 +42,9 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     helm
      search-engine
      auto-completion
      better-defaults
-     emacs-lisp
      git
      markdown
      org
@@ -78,7 +78,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(drone org-jira writegood-mode skewer-mode ob-restclient ob-go ob-restclient eldoc helm-gtags docker camcorder ob-php)
+   dotspacemacs-additional-packages '(drone org-jira writegood-mode sqlplus plsql skewer-mode ob-restclient ob-go ob-restclient eldoc helm-gtags docker camcorder ob-php)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -283,11 +283,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-<<<<<<< HEAD
-   dotspacemacs-line-numbers `relative
-=======
    dotspacemacs-line-numbers 'relative
->>>>>>> 2ffa2470ddac2be8ab1c881242b49084f8f9456e
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -371,6 +367,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
     '((python . t)
       (go . t)
       (php . t)
+      (sql . t)
       (emacs-lisp . t)
       (restclient . t)
       (shell . t)
@@ -380,7 +377,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
       (add-to-list 'org-babel-load-languages '(php . t))
       (org-babel-do-load-languages 'org-babel-load-languages '((restclient . t)))
       (setq org-latex-create-formula-image-program 'imagemagick)
-
+      '(org-enable-bootstrap-support t)
+      ;; (if (file-exists-p "~/.emacs/babel-example.el")
+      ;;     (load-file "~/.emacs/babel-example.el")
+      ;;   )
     )
 
 
@@ -426,6 +426,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (if (file-exists-p "~/.emacs/database.el")
       (load-file "~/.emacs/database.el"))
 
+
   (if (file-exists-p "~/.emacs/docker-compose.el")
       (load-file "~/.emacs/docker-compose.el"))
 
@@ -442,7 +443,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right
  '(helm-ag-fuzzy-match t)
- '(org-enable-bootstrap-support t)
  '(phpcbf-executable "/usr/bin/phpcbf")
  '(phpcbf-standard "PSR2"))
 (custom-set-faces
