@@ -150,13 +150,13 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(zenburn
+                         spacemacs-dark
                          spacemacs-light
                          solarized-light
                          solarized-dark
                          leuven
-                         monokai
-                         zenburn)
+                         monokai)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -431,6 +431,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
       (load-file "~/.emacs/docker-compose.el"))
 
   (global-set-key (kbd "C-c d") 'dc-launcher/body)
+  (evil-leader/set-key "N" 'nikola-exec-popup)
   (evil-leader/set-key "d" 'dc-launcher/body)
   (evil-leader/set-key "D" 'drone-exec-popup)
   )
@@ -443,6 +444,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right
  '(helm-ag-fuzzy-match t)
+ '(org-enable-bootstrap-support t)
  '(phpcbf-executable "/usr/bin/phpcbf")
  '(phpcbf-standard "PSR2"))
 (custom-set-faces
