@@ -68,6 +68,7 @@ values."
      erc
      yaml
      django
+     themes-megapack
      ;;colors
      (colors :variables
              colors-enable-rainbow-identifiers nil
@@ -78,7 +79,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(drone org-jira writegood-mode sqlplus plsql skewer-mode ob-restclient ob-go ob-restclient eldoc helm-gtags docker camcorder ob-php)
+   dotspacemacs-additional-packages '(feature-mode drone org-jira writegood-mode sqlplus plsql skewer-mode ob-restclient ob-go ob-restclient eldoc helm-gtags docker camcorder ob-php)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -354,19 +355,26 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (add-hook 'web-mode-hook  'my-web-mode-hook)
 
   (with-eval-after-load 'org
+    ;;use minted for code highlighting
+    (setq org-export-latex-listings 'minted)
     ;;org mode latex size / formulas
     (plist-put org-format-latex-options :scale 2.0)
     ;;(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
     (set-default 'preview-scale-function 1.4)
 
+    ;;org babel export dont evaluate code blocks on export
+    ;;setting this to nil breaks :exports param
+    ;;(setq org-export-babel-evaluate nil)
+
     ;;org babel languages
     (setq org-odt-preferred-output-format "docx")
-    (setq org-babel-python-command "python3") 
+    (setq org-babel-python-command "python3")
     (org-babel-do-load-languages
     'org-babel-load-languages
     '((python . t)
       (go . t)
       (php . t)
+      (plantuml . t)
       (sql . t)
       (emacs-lisp . t)
       (restclient . t)
@@ -383,6 +391,16 @@ before packages are loaded. If you are unsure, you should try in setting them in
       ;;   )
     )
 
+  (setq helm-exit-idle-delay 0)
+
+  ;; erc setup
+  (setq-default dotspacemacs-configuration-layers
+                '((erc :variables
+                       erc-server-list
+                       '(("irc.freenode.net"
+                          :port "6697"
+                          :ssl t
+                          :nick "oly")))))
 
   ;; Make linums relative by default
   (with-eval-after-load 'linum
@@ -409,6 +427,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; time duration (avoid showing days)
   (setq org-time-clocksum-format
         '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+  
+  (setq plantuml-jar-path "/opt/plantuml.jar")
+  (setq org-plantuml-jar-path "/opt/plantuml.jar")
 
   ;;user packages
   (if (file-exists-p "~/.emacs/jira.el")
@@ -416,8 +437,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (if (file-exists-p "~/.emacs/drone.el")
       (load-file "~/.emacs/drone.el"))
-  
-  (if (file-exists-p "~/.emacs/drone.el")
+ 
+  (if (file-exists-p "~/.emacs/user.el")
       (load-file "~/.emacs/user.el"))
 
   (if (file-exists-p "~/.emacs/ox-blog-nikola.el")
@@ -431,7 +452,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
       (load-file "~/.emacs/docker-compose.el"))
 
   (global-set-key (kbd "C-c d") 'dc-launcher/body)
-  (evil-leader/set-key "N" 'nikola-exec-popup)
+  (evil-leader/set-key "N" 'nikola-popup)
   (evil-leader/set-key "d" 'dc-launcher/body)
   (evil-leader/set-key "D" 'drone-exec-popup)
   )
