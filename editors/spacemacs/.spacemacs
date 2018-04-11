@@ -33,6 +33,7 @@ values."
    '(
      helm
      emacs-lisp
+     neotree
      windows-scripts
      csv
      nginx
@@ -42,6 +43,7 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     slack
      search-engine
      auto-completion
      better-defaults
@@ -67,6 +69,7 @@ values."
      emoji
      erc
      yaml
+     mu4e
      django
      themes-megapack
      ;;colors
@@ -79,7 +82,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(feature-mode drone org-jira writegood-mode sqlplus plsql skewer-mode ob-restclient ob-go ob-restclient eldoc helm-gtags docker camcorder ob-php)
+   dotspacemacs-additional-packages '(djangonaut feature-mode drone org-jira writegood-mode sqlplus plsql skewer-mode ob-restclient ob-go ob-restclient eldoc helm-gtags docker camcorder ob-php docker-tramp helm-tramp)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -163,7 +166,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+                               :size 12
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -366,6 +369,15 @@ before packages are loaded. If you are unsure, you should try in setting them in
     ;;setting this to nil breaks :exports param
     ;;(setq org-export-babel-evaluate nil)
 
+    ;;python config
+    (setq py-python-command "python3")
+    (defcustom python-shell-interpreter "python3"
+      "Default Python interpreter for shell."
+      :type 'string
+      :group 'python)
+    ;;make help use cat instead of less which does not work well in emacs
+    (setenv "PAGER" "cat")
+    
     ;;org babel languages
     (setq org-odt-preferred-output-format "docx")
     (setq org-babel-python-command "python3")
@@ -374,6 +386,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
     '((python . t)
       (go . t)
       (php . t)
+      (dot . t)
       (plantuml . t)
       (sql . t)
       (emacs-lisp . t)
@@ -427,9 +440,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; time duration (avoid showing days)
   (setq org-time-clocksum-format
         '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
-  
+
   (setq plantuml-jar-path "/opt/plantuml.jar")
   (setq org-plantuml-jar-path "/opt/plantuml.jar")
+
+  (setq tramp-verbose 6); had been 3
 
   ;;user packages
   (if (file-exists-p "~/.emacs/jira.el")
@@ -437,9 +452,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (if (file-exists-p "~/.emacs/drone.el")
       (load-file "~/.emacs/drone.el"))
- 
+
   (if (file-exists-p "~/.emacs/user.el")
       (load-file "~/.emacs/user.el"))
+
+  (if (file-exists-p "~/.emacs/work.el")
+      (load-file "~/.emacs/work.el"))
 
   (if (file-exists-p "~/.emacs/ox-blog-nikola.el")
       (load-file "~/.emacs/ox-blog-nikola.el"))
@@ -447,9 +465,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (if (file-exists-p "~/.emacs/database.el")
       (load-file "~/.emacs/database.el"))
 
-
   (if (file-exists-p "~/.emacs/docker-compose.el")
       (load-file "~/.emacs/docker-compose.el"))
+
+  ;; fix for docker tramp on older versions of tramp
+  (if (file-exists-p "~/.emacs/docker-tramp-compat.el")
+      (load-file "~/.emacs/docker-tramp-compat.el"))
 
   (global-set-key (kbd "C-c d") 'dc-launcher/body)
   (evil-leader/set-key "N" 'nikola-popup)
